@@ -1,23 +1,24 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { Send, Sparkles, Eye, MessageCircle, Mic, Camera } from "lucide-react"
-import { useState } from "react"
-import Image from "next/image"
-import Navbar from "@/components/Navbar"
+import { motion, AnimatePresence } from "framer-motion";
+import { Send, Sparkles, Eye, MessageCircle, Mic, Camera } from "lucide-react";
+import { useState } from "react";
+import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import Miji from "@/assets/Miji.png";
 
 interface ChatMessage {
-  id: string
-  text: string
-  sender: "user" | "ai"
-  timestamp: Date
-  emotion?: string
+  id: string;
+  text: string;
+  sender: "user" | "ai";
+  timestamp: Date;
+  emotion?: string;
 }
 
-export default function CeritaTenjin() {
-  const [inputMessage, setInputMessage] = useState("")
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
-  const [isTyping, setIsTyping] = useState(false)
+export default function CeritaMiji() {
+  const [inputMessage, setInputMessage] = useState("");
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [isTyping, setIsTyping] = useState(false);
 
   // Animation variants
   const containerVariants = {
@@ -29,7 +30,7 @@ export default function CeritaTenjin() {
         delayChildren: 0.2,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -41,22 +42,22 @@ export default function CeritaTenjin() {
         ease: "easeOut" as const,
       },
     },
-  }
+  };
 
   // Simple send message handler (design only)
   const sendMessage = () => {
-    if (!inputMessage.trim()) return
+    if (!inputMessage.trim()) return;
 
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
       text: inputMessage.trim(),
       sender: "user",
       timestamp: new Date(),
-    }
+    };
 
-    setChatMessages((prev) => [...prev, userMessage])
-    setInputMessage("")
-    setIsTyping(true)
+    setChatMessages((prev) => [...prev, userMessage]);
+    setInputMessage("");
+    setIsTyping(true);
 
     // Simulate AI response
     setTimeout(() => {
@@ -65,28 +66,28 @@ export default function CeritaTenjin() {
         text: "Terima kasih sudah berbagi dengan saya. Saya di sini untuk mendengarkan Anda.",
         sender: "ai",
         timestamp: new Date(),
-      }
-      setChatMessages((prev) => [...prev, aiResponse])
-      setIsTyping(false)
-    }, 1500)
-  }
+      };
+      setChatMessages((prev) => [...prev, aiResponse]);
+      setIsTyping(false);
+    }, 1500);
+  };
 
   return (
-    <div className="min-h-screen bg-[#FFD500] relative overflow-hidden">
+    <div className="min-h-screen bg-primary relative overflow-hidden">
       <Navbar />
       <div className="mt-24 mb-10">
-        <motion.div 
-          className="container mx-auto px-4 max-w-7xl" 
-          variants={containerVariants} 
-          initial="hidden" 
+        <motion.div
+          className="container mx-auto px-4 max-w-7xl"
+          variants={containerVariants}
+          initial="hidden"
           animate="visible"
         >
           {/* Header Section */}
           <motion.div variants={itemVariants} className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#00296B] mb-4">
-             Suara Miji
+            <h1 className="text-4xl md:text-5xl font-bold text-secondary-dark mb-4">
+              Suara Miji
             </h1>
-            <p className="text-lg text-[#00296B]/70 max-w-2xl mx-auto">
+            <p className="text-lg text-secondary-dark/70 max-w-2xl mx-auto">
               Ceritakan perasaanmu kepada Minji siap mendengarkan
             </p>
           </motion.div>
@@ -99,21 +100,24 @@ export default function CeritaTenjin() {
               <motion.div variants={itemVariants}>
                 <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
                   <div className="p-4 border-b border-gray-200/50 bg-white/50">
-                    <h3 className="text-[#00296B] font-semibold text-lg flex items-center gap-2">
+                    <h3 className="text-secondary-dark font-semibold text-lg flex items-center gap-2">
                       <Camera className="w-5 h-5" />
                       Camera
                     </h3>
                   </div>
 
                   <div className="p-4">
-                    <div className="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden">
-                        
+                    <div className="relative aspect-video bg-linear-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden">
                       {/* Camera Placeholder Content */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="text-center text-white/60">
                           <Camera className="w-16 h-16 mx-auto mb-3 opacity-40" />
-                          <p className="text-sm font-medium">Camera tidak aktif</p>
-                          <p className="text-xs mt-1 opacity-70">Placeholder untuk integrasi camera</p>
+                          <p className="text-sm font-medium">
+                            Camera tidak aktif
+                          </p>
+                          <p className="text-xs mt-1 opacity-70">
+                            Placeholder untuk integrasi camera
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -125,7 +129,7 @@ export default function CeritaTenjin() {
               <motion.div variants={itemVariants}>
                 <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
                   <div className="p-4 border-b border-gray-200/50 bg-white/50">
-                    <h3 className="text-[#00296B] font-semibold text-lg flex items-center gap-2">
+                    <h3 className="text-secondary-dark font-semibold text-lg flex items-center gap-2">
                       <Eye className="w-5 h-5" />
                       Status Emosi
                     </h3>
@@ -140,14 +144,20 @@ export default function CeritaTenjin() {
                         exit={{ opacity: 0, scale: 0.95 }}
                         className="mb-6"
                       >
-                        <p className="text-center text-[#00296B]/50 text-sm">Belum ada data emosi</p>
+                        <p className="text-center text-secondary-dark/50 text-sm">
+                          Belum ada data emosi
+                        </p>
                       </motion.div>
                     </AnimatePresence>
 
                     {/* Emotion History */}
                     <div className="mt-6">
-                      <h4 className="text-sm font-semibold text-[#00296B] mb-3">Riwayat Emosi</h4>
-                      <p className="text-center text-[#00296B]/50 text-xs">Belum ada riwayat</p>
+                      <h4 className="text-sm font-semibold text-secondary-dark mb-3">
+                        Riwayat Emosi
+                      </h4>
+                      <p className="text-center text-secondary-dark/50 text-xs">
+                        Belum ada riwayat
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -162,16 +172,20 @@ export default function CeritaTenjin() {
                   className="relative"
                   animate={{
                     y: [-5, 5, -5],
-                    transition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                    transition: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
                   }}
                 >
                   <div className="w-64 h-64 md:w-80 md:h-80 relative">
-                    <Image 
-                      src="/Miji.svg" 
-                      alt="Miji" 
+                    <Image
+                      src={Miji}
+                      alt="Miji"
                       width={320}
                       height={320}
-                      className="w-full h-full object-contain drop-shadow-2xl" 
+                      className="w-full h-full object-contain drop-shadow-2xl"
                     />
                   </div>
                 </motion.div>
@@ -183,8 +197,8 @@ export default function CeritaTenjin() {
                     animate={{ opacity: 1, y: 0 }}
                     className="max-w-lg w-full px-4"
                   >
-                    <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border-2 border-[#00296B]/20">
-                      <p className="text-[#00296B] text-center leading-relaxed text-lg">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border-2 border-secondary-dark/20">
+                      <p className="text-secondary-dark text-center leading-relaxed text-lg">
                         {chatMessages[chatMessages.length - 1].text}
                       </p>
                     </div>
@@ -196,7 +210,7 @@ export default function CeritaTenjin() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-[#00296B] hover:bg-[#00296B]/90 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-2 transition-colors shadow-lg "
+                    className="bg-secondary-dark hover:bg-secondary-dark/90 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-2 transition-colors shadow-lg "
                   >
                     <Mic className="w-14 h-14" />
                   </motion.button>
@@ -205,11 +219,14 @@ export default function CeritaTenjin() {
             </motion.div>
 
             {/* Right Column - Chat History & Analysis */}
-            <motion.div variants={itemVariants} className="lg:col-span-1 space-y-6">
+            <motion.div
+              variants={itemVariants}
+              className="lg:col-span-1 space-y-6"
+            >
               {/* Chat History */}
               <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
                 <div className="p-4 border-b border-gray-200/50 bg-white/50">
-                  <h3 className="text-[#00296B] font-semibold text-lg flex items-center gap-2">
+                  <h3 className="text-secondary-dark font-semibold text-lg flex items-center gap-2">
                     <MessageCircle className="w-5 h-5" />
                     Riwayat Percakapan
                   </h3>
@@ -217,9 +234,11 @@ export default function CeritaTenjin() {
 
                 <div className="h-96 overflow-y-auto p-4 space-y-3">
                   {chatMessages.length === 0 && (
-                    <div className="text-center text-[#00296B]/50 py-12">
+                    <div className="text-center text-secondary-dark/50 py-12">
                       <MessageCircle className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                      <h4 className="text-base font-medium mb-2">Belum ada percakapan</h4>
+                      <h4 className="text-base font-medium mb-2">
+                        Belum ada percakapan
+                      </h4>
                       <p className="text-sm">Mulai ceritakan perasaan Anda!</p>
                     </div>
                   )}
@@ -229,14 +248,22 @@ export default function CeritaTenjin() {
                       key={message.id}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
-                    >
-                      <div className={`max-w-[85%] px-4 py-3 rounded-2xl shadow-md ${
+                      className={`flex ${
                         message.sender === "user"
-                          ? "bg-[#00296B] text-white"
-                          : "bg-white text-[#00296B] border-2 border-[#00296B]/10"
-                      }`}>
-                        <p className="text-sm leading-relaxed">{message.text}</p>
+                          ? "justify-end"
+                          : "justify-start"
+                      }`}
+                    >
+                      <div
+                        className={`max-w-[85%] px-4 py-3 rounded-2xl shadow-md ${
+                          message.sender === "user"
+                            ? "bg-secondary-dark text-white"
+                            : "bg-white text-secondary-dark border-2 border-secondary-dark/10"
+                        }`}
+                      >
+                        <p className="text-sm leading-relaxed">
+                          {message.text}
+                        </p>
                         <div className="flex items-center justify-between mt-2 gap-2">
                           <span className="text-xs opacity-70">
                             {message.timestamp.toLocaleTimeString("id-ID", {
@@ -260,11 +287,17 @@ export default function CeritaTenjin() {
                       animate={{ opacity: 1 }}
                       className="flex justify-start"
                     >
-                      <div className="bg-white text-[#00296B] px-5 py-3 rounded-2xl shadow-md border-2 border-[#00296B]/10">
+                      <div className="bg-white text-secondary-dark px-5 py-3 rounded-2xl shadow-md border-2 border-secondary-dark/10">
                         <div className="flex space-x-1.5">
-                          <div className="w-2.5 h-2.5 bg-[#00296B] rounded-full animate-bounce"></div>
-                          <div className="w-2.5 h-2.5 bg-[#00296B] rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-                          <div className="w-2.5 h-2.5 bg-[#00296B] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                          <div className="w-2.5 h-2.5 bg-secondary-dark rounded-full animate-bounce"></div>
+                          <div
+                            className="w-2.5 h-2.5 bg-secondary-dark rounded-full animate-bounce"
+                            style={{ animationDelay: "0.1s" }}
+                          ></div>
+                          <div
+                            className="w-2.5 h-2.5 bg-secondary-dark rounded-full animate-bounce"
+                            style={{ animationDelay: "0.2s" }}
+                          ></div>
                         </div>
                       </div>
                     </motion.div>
@@ -274,7 +307,7 @@ export default function CeritaTenjin() {
 
               {/* Analysis Card */}
               <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-5">
-                <h3 className="text-[#00296B] font-semibold text-lg mb-4 flex items-center gap-2">
+                <h3 className="text-secondary-dark font-semibold text-lg mb-4 flex items-center gap-2">
                   <Sparkles className="w-5 h-5" />
                   Analisis Emosi Real Time
                 </h3>
@@ -284,12 +317,14 @@ export default function CeritaTenjin() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="bg-gradient-to-r from-gray-100/50 to-gray-200/50 p-4 rounded-xl border-l-4 border-gray-400"
+                    className="bg-linear-to-r from-gray-100/50 to-gray-200/50 p-4 rounded-xl border-l-4 border-gray-400"
                   >
                     <div className="flex items-center gap-3">
                       <div>
-                        <h4 className="font-bold text-[#00296B] text-base">Belum Ada Analisis</h4>
-                        <p className="text-xs text-[#00296B]/70 mt-1">
+                        <h4 className="font-bold text-secondary-dark text-base">
+                          Belum Ada Analisis
+                        </h4>
+                        <p className="text-xs text-secondary-dark/70 mt-1">
                           Mulai scan untuk melihat analisis emosi
                         </p>
                       </div>
@@ -302,5 +337,5 @@ export default function CeritaTenjin() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

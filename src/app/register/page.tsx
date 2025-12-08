@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { motion, Variants } from "framer-motion"
-import { Mail, Lock, Eye, EyeOff, User, ArrowRight } from "lucide-react"
-import { useState } from "react"
-import Link from "next/link"
-import PawPrint from "../../components/Paw-meong"
+import { motion, Variants } from "framer-motion";
+import { Mail, Lock, Eye, EyeOff, User, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import Link from "next/link";
+import PawPrint from "../../components/Paw-meong";
 
 export default function RegisterPage() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
-  })
+  });
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -25,7 +25,7 @@ export default function RegisterPage() {
         delayChildren: 0.2,
       },
     },
-  }
+  };
 
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -37,7 +37,7 @@ export default function RegisterPage() {
         ease: "easeOut" as const,
       },
     },
-  }
+  };
 
   const floatingVariants: Variants = {
     animate: {
@@ -49,33 +49,33 @@ export default function RegisterPage() {
         ease: "easeInOut",
       },
     },
-  }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle register logic here
     if (formData.password !== formData.confirmPassword) {
-      alert("Password tidak cocok!")
-      return
+      alert("Password tidak cocok!");
+      return;
     }
-    console.log("Register:", formData)
-  }
+    console.log("Register:", formData);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#00296B] via-[#003d99] to-[#00296B] flex items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-secondary-dark via-secondary to-secondary-dark flex items-center justify-center p-6 relative overflow-hidden">
       <motion.div
         variants={floatingVariants}
         animate="animate"
         className="absolute top-10 left-10 opacity-30"
       >
-        <PawPrint color="#FFD500" />
+        <PawPrint color="var(--color-primary)" />
       </motion.div>
       <motion.div
         variants={floatingVariants}
@@ -83,7 +83,7 @@ export default function RegisterPage() {
         style={{ animationDelay: "1s" }}
         className="absolute bottom-20 right-20 opacity-30 scale-125"
       >
-        <PawPrint color="#FFD500" />
+        <PawPrint color="var(--color-primary)" />
       </motion.div>
       <motion.div
         variants={floatingVariants}
@@ -91,7 +91,7 @@ export default function RegisterPage() {
         style={{ animationDelay: "2s" }}
         className="absolute top-1/2 right-10 opacity-20 scale-75"
       >
-        <PawPrint color="#FFD500" />
+        <PawPrint color="var(--color-primary)" />
       </motion.div>
       <motion.div
         variants={floatingVariants}
@@ -99,41 +99,46 @@ export default function RegisterPage() {
         style={{ animationDelay: "3s" }}
         className="absolute bottom-10 left-1/4 opacity-25 scale-90"
       >
-        <PawPrint color="#FFD500" />
+        <PawPrint color="var(--color-primary)" />
       </motion.div>
       {/* Main Card */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="w-full max-w-md">
+        className="w-full max-w-md"
+      >
         <motion.div
           variants={itemVariants}
           className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 relative overflow-hidden"
         >
           {/* Logo nya ya bos  */}
-          <motion.div
-            variants={itemVariants}
-            className="text-center mb-8"
-          >
-            <h1 className="text-4xl font-bold text-[#00296B] mb-2">MEJIWA</h1>
-            <p className="text-gray-600 text-lg">Mulai Perjalanan Sehat Jiwamu!</p>
+          <motion.div variants={itemVariants} className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-secondary-dark mb-2">
+              MEJIWA
+            </h1>
+            <p className="text-gray-600 text-lg">
+              Mulai Perjalanan Sehat Jiwamu!
+            </p>
           </motion.div>
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Name Field */}
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-[#00296B] mb-2">
+              <label className="block text-sm font-semibold text-secondary-dark mb-2">
                 Nama Lengkap
               </label>
               <div className="relative">
-                <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                <User
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                  size={20}
+                />
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="masukkan nama lengkap"
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#FFD500] focus:outline-none transition-all duration-300 text-gray-700"
+                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:outline-none transition-all duration-300 text-gray-700"
                   required
                 />
               </div>
@@ -141,18 +146,21 @@ export default function RegisterPage() {
 
             {/* Email*/}
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-[#00296B] mb-2">
+              <label className="block text-sm font-semibold text-secondary-dark mb-2">
                 Email
               </label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                <Mail
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                  size={20}
+                />
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="masukkan email anda"
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#FFD500] focus:outline-none transition-all duration-300 text-gray-700"
+                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:outline-none transition-all duration-300 text-gray-700"
                   required
                 />
               </div>
@@ -160,39 +168,50 @@ export default function RegisterPage() {
 
             {/* Password  */}
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-[#00296B] mb-2">
+              <label className="block text-sm font-semibold text-secondary-dark mb-2">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                <Lock
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                  size={20}
+                />
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="minimal 8 karakter"
-                  className="w-full pl-12 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:border-[#FFD500] focus:outline-none transition-all duration-300 text-gray-700"
+                  className="w-full pl-12 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:outline-none transition-all duration-300 text-gray-700"
                   required
-                  minLength={8}/>
+                  minLength={8}
+                />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#00296B] transition-colors">
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-secondary-dark transition-colors"
+                >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
             </motion.div>
             {/* Checkbox */}
-            <motion.div variants={itemVariants} className="flex items-start gap-2">
+            <motion.div
+              variants={itemVariants}
+              className="flex items-start gap-2"
+            >
               <input
                 type="checkbox"
                 id="terms"
                 required
-                className="mt-1 w-4 h-4 accent-[#FFD500] cursor-pointer"
+                className="mt-1 w-4 h-4 accent-primary cursor-pointer"
               />
               <label htmlFor="terms" className="text-sm text-gray-600">
                 Saya setuju dengan{" "}
-                <Link href="/terms" className="text-[#00296B] font-semibold hover:text-[#FFD500]">
+                <Link
+                  href="/terms"
+                  className="text-secondary-dark font-semibold hover:text-primary"
+                >
                   syarat dan ketentuan
                 </Link>{" "}
                 yang berlaku
@@ -208,13 +227,19 @@ export default function RegisterPage() {
               }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full bg-gradient-to-r from-[#FFD500] to-[#FFE866] text-[#00296B] font-bold py-4 rounded-xl hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group"
+              className="w-full bg-gradient-to-r from-primary to-primary-light text-secondary-dark font-bold py-4 rounded-xl hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group"
             >
               Daftar Sekarang
-              <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+              <ArrowRight
+                className="group-hover:translate-x-1 transition-transform"
+                size={20}
+              />
             </motion.button>
           </form>
-          <motion.div variants={itemVariants} className="my-6 flex items-center gap-4">
+          <motion.div
+            variants={itemVariants}
+            className="my-6 flex items-center gap-4"
+          >
             <div className="flex-1 h-px bg-gray-300" />
             <span className="text-gray-500 text-sm">atau</span>
             <div className="flex-1 h-px bg-gray-300" />
@@ -226,7 +251,7 @@ export default function RegisterPage() {
               Sudah punya akun?{" "}
               <Link
                 href="/login"
-                className="text-[#00296B] font-bold hover:text-[#FFD500] transition-colors"
+                className="text-secondary-dark font-bold hover:text-primary transition-colors"
               >
                 Masuk Sekarang
               </Link>
@@ -235,5 +260,5 @@ export default function RegisterPage() {
         </motion.div>
       </motion.div>
     </div>
-  )
+  );
 }

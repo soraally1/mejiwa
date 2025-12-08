@@ -1,13 +1,27 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { User, Mail, Calendar, MapPin, Edit, LogOut, Settings, Activity, Heart, Brain, Star, Trophy, Clock } from "lucide-react"
-import { useState } from "react"
-import Image from "next/image"
-import Navbar from "@/components/Navbar"
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  User,
+  Mail,
+  Calendar,
+  MapPin,
+  Edit,
+  LogOut,
+  Settings,
+  Activity,
+  Heart,
+  Brain,
+  Star,
+  Trophy,
+  Clock,
+} from "lucide-react";
+import { useState } from "react";
+import Image from "next/image";
+import Navbar from "@/components/Navbar";
 
 export default function ProfilePage() {
-  const [isEditing, setIsEditing] = useState(false)
+  const [isEditing, setIsEditing] = useState(false);
 
   const userData = {
     name: "Rifqinabil",
@@ -16,20 +30,39 @@ export default function ProfilePage() {
     location: "Jakarta",
     avatar: "/avatar-placeholder.png",
     bio: "aku gay",
-  }
-
-
-
-
+  };
 
   const recentActivities = [
-    { id: 1, type: "Cerita Miji", time: "2 jam lalu", icon: "💬", mood: "Senang" },
-    { id: 2, type: "Suara Miji", time: "5 jam lalu", icon: "🎤", mood: "Netral" },
-    { id: 3, type: "Sehat Jiwa", time: "1 hari lalu", icon: "🧘", mood: "Tenang" },
-    { id: 4, type: "Cerita Miji", time: "2 hari lalu", icon: "💬", mood: "Bahagia" },
-  ]
+    {
+      id: 1,
+      type: "Cerita Miji",
+      time: "2 jam lalu",
+      icon: "💬",
+      mood: "Senang",
+    },
+    {
+      id: 2,
+      type: "Suara Miji",
+      time: "5 jam lalu",
+      icon: "🎤",
+      mood: "Netral",
+    },
+    {
+      id: 3,
+      type: "Sehat Jiwa",
+      time: "1 hari lalu",
+      icon: "🧘",
+      mood: "Tenang",
+    },
+    {
+      id: 4,
+      type: "Cerita Miji",
+      time: "2 hari lalu",
+      icon: "💬",
+      mood: "Bahagia",
+    },
+  ];
 
- 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -39,7 +72,7 @@ export default function ProfilePage() {
         delayChildren: 0.2,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -51,24 +84,24 @@ export default function ProfilePage() {
         ease: "easeOut" as const,
       },
     },
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-[#FFD500] relative overflow-hidden">
+    <div className="min-h-screen bg-primary relative overflow-hidden">
       <Navbar />
       <div className="mt-24 mb-10">
-        <motion.div 
-          className="container mx-auto px-4 max-w-7xl" 
-          variants={containerVariants} 
-          initial="hidden" 
+        <motion.div
+          className="container mx-auto px-4 max-w-7xl"
+          variants={containerVariants}
+          initial="hidden"
           animate="visible"
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#00296B] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-secondary-dark mb-4">
               Profil Saya 👤
             </h1>
-            <p className="text-lg text-[#00296B]/70 max-w-2xl mx-auto">
+            <p className="text-lg text-secondary-dark/70 max-w-2xl mx-auto">
               Kelola informasi pribadi dan pantau perkembangan mental Anda
             </p>
           </motion.div>
@@ -78,7 +111,7 @@ export default function ProfilePage() {
             <motion.div variants={itemVariants} className="lg:col-span-1">
               <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden sticky top-24">
                 {/* Profile*/}
-                <div className="h-32 bg-gradient-to-br from-[#00296B] to-[#004080] relative">
+                <div className="h-32 bg-gradient-to-br from-secondary-dark to-secondary relative">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -96,7 +129,7 @@ export default function ProfilePage() {
                       whileHover={{ scale: 1.05 }}
                       className="w-32 h-32 rounded-full border-4 border-white shadow-xl bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center overflow-hidden"
                     >
-                      <User className="w-16 h-16 text-[#00296B]" />
+                      <User className="w-16 h-16 text-secondary-dark" />
                     </motion.div>
                     <div className="absolute bottom-2 right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
                   </div>
@@ -104,10 +137,14 @@ export default function ProfilePage() {
 
                 {/* Profile */}
                 <div className="p-6 text-center">
-                  <h2 className="text-2xl font-bold text-[#00296B] mb-1">{userData.name}</h2>
-                  <p className="text-[#00296B]/70 text-sm mb-4">{userData.email}</p>
-                  
-                  <div className="space-y-3 text-sm text-[#00296B]/80">
+                  <h2 className="text-2xl font-bold text-secondary-dark mb-1">
+                    {userData.name}
+                  </h2>
+                  <p className="text-secondary-dark/70 text-sm mb-4">
+                    {userData.email}
+                  </p>
+
+                  <div className="space-y-3 text-sm text-secondary-dark/80">
                     <div className="flex items-center justify-center gap-2">
                       <Calendar className="w-4 h-4" />
                       <span>Bergabung {userData.joinDate}</span>
@@ -118,12 +155,11 @@ export default function ProfilePage() {
                     </div>
                   </div>
 
-                  <p className="text-[#00296B]/70 text-sm mt-4 leading-relaxed">
+                  <p className="text-secondary-dark/70 text-sm mt-4 leading-relaxed">
                     {userData.bio}
                   </p>
 
-    
-                  <div className="mt-6 space-y-3">                    
+                  <div className="mt-6 space-y-3">
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -138,13 +174,17 @@ export default function ProfilePage() {
             </motion.div>
 
             {/* Right Column*/}
-            <motion.div variants={itemVariants} className="lg:col-span-2 space-y-6">
-
-
+            <motion.div
+              variants={itemVariants}
+              className="lg:col-span-2 space-y-6"
+            >
               {/* Aktifitas */}
-              <motion.div variants={itemVariants} className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
+              <motion.div
+                variants={itemVariants}
+                className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden"
+              >
                 <div className="p-6 border-b border-gray-200/50">
-                  <h3 className="text-[#00296B] font-bold text-xl flex items-center gap-2">
+                  <h3 className="text-secondary-dark font-bold text-xl flex items-center gap-2">
                     <Clock className="w-6 h-6" />
                     Aktivitas Terakhir
                   </h3>
@@ -162,10 +202,14 @@ export default function ProfilePage() {
                     >
                       <div className="text-3xl">{activity.icon}</div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-[#00296B]">{activity.type}</h4>
-                        <p className="text-sm text-[#00296B]/70">{activity.time}</p>
+                        <h4 className="font-semibold text-secondary-dark">
+                          {activity.type}
+                        </h4>
+                        <p className="text-sm text-secondary-dark/70">
+                          {activity.time}
+                        </p>
                       </div>
-                      <div className="px-3 py-1 bg-[#FFD500]/30 rounded-full text-xs font-semibold text-[#00296B]">
+                      <div className="px-3 py-1 bg-primary/30 rounded-full text-xs font-semibold text-secondary-dark">
                         {activity.mood}
                       </div>
                     </motion.div>
@@ -177,5 +221,5 @@ export default function ProfilePage() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,12 +1,19 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDown, LogIn, Home, Heart, PawPrint, UserPlus } from "lucide-react"
-import { useState } from "react"
-import Link from "next/link"
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ChevronDown,
+  LogIn,
+  Home,
+  Heart,
+  PawPrint,
+  UserPlus,
+} from "lucide-react";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function Navbar() {
-  const [isMijiOpen, setIsMijiOpen] = useState(false)
+  const [isMijiOpen, setIsMijiOpen] = useState(false);
 
   return (
     <>
@@ -14,12 +21,12 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="hidden md:flex items-center justify-between px-8 py-6 bg-[#FFD500] fixed top-0 left-0 right-0 z-50"
+        className="hidden md:flex items-center justify-between px-8 py-6 bg-primary fixed top-0 left-0 right-0 z-50"
       >
         {/* Logo mejiwa*/}
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className="text-[#00296B] font-bold text-2xl cursor-pointer"
+          className="text-secondary-dark font-bold text-2xl cursor-pointer"
         >
           MEJIWA
         </motion.div>
@@ -31,7 +38,7 @@ export default function Navbar() {
             <Link href="/Home">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="text-[#00296B] font-semibold text-lg hover:opacity-75 transition-opacity cursor-pointer"
+                className="text-secondary-dark font-semibold text-lg hover:opacity-75 transition-opacity cursor-pointer"
               >
                 Beranda
               </motion.div>
@@ -46,14 +53,14 @@ export default function Navbar() {
                 onMouseLeave={() => setIsMijiOpen(false)}
                 onClick={() => setIsMijiOpen(!isMijiOpen)}
               >
-                <span className="text-[#00296B] font-semibold text-lg hover:opacity-75 transition-opacity">
+                <span className="text-secondary-dark font-semibold text-lg hover:opacity-75 transition-opacity">
                   Miji
                 </span>
                 <motion.div
                   animate={{ rotate: isMijiOpen ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <ChevronDown size={20} className="text-[#00296B]" />
+                  <ChevronDown size={20} className="text-secondary-dark" />
                 </motion.div>
               </motion.div>
 
@@ -71,19 +78,19 @@ export default function Navbar() {
                   >
                     <Link
                       href="/CeritaMiji"
-                      className="block px-6 py-3 text-[#00296B] font-medium hover:bg-[#FFD500] transition-colors"
+                      className="block px-6 py-3 text-secondary-dark font-medium hover:bg-primary-light transition-colors"
                     >
                       Cerita Miji
                     </Link>
                     <Link
                       href="/SuaraMiji"
-                      className="block px-6 py-3 text-[#00296B] font-medium hover:bg-[#FFD500] transition-colors"
+                      className="block px-6 py-3 text-secondary-dark font-medium hover:bg-primary-light transition-colors"
                     >
                       Suara Miji
                     </Link>
                     <Link
                       href="/DeteksiMiji"
-                      className="block px-6 py-3 text-[#00296B] font-medium hover:bg-[#FFD500] transition-colors"
+                      className="block px-6 py-3 text-secondary-dark font-medium hover:bg-primary-light transition-colors"
                     >
                       Deteksi Miji
                     </Link>
@@ -95,7 +102,7 @@ export default function Navbar() {
             <Link href="#sehat-jiwa">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="text-[#00296B] font-semibold text-lg hover:opacity-75 transition-opacity cursor-pointer"
+                className="text-secondary-dark font-semibold text-lg hover:opacity-75 transition-opacity cursor-pointer"
               >
                 Sehat Jiwa
               </motion.div>
@@ -108,19 +115,18 @@ export default function Navbar() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 bg-[#00296B] text-white font-semibold rounded-full hover:shadow-lg transition-shadow cursor-pointer"
+                className="px-6 py-2 bg-secondary-dark text-white font-semibold rounded-full hover:shadow-lg transition-shadow cursor-pointer"
               >
                 Daftar
               </motion.div>
             </Link>
 
-            <Link href="/Login">
+            <Link href="/login">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="text-[#00296B] font-semibold text-lg hover:opacity-75 transition-opacity flex items-center gap-1 cursor-pointer"
+                className="text-secondary-dark font-semibold text-lg hover:opacity-75 transition-opacity flex items-center gap-1 cursor-pointer"
               >
                 Login
-                <LogIn size={18} />
               </motion.div>
             </Link>
           </div>
@@ -132,9 +138,9 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="md:hidden fixed top-0 left-0 right-0 z-50 bg-[#FFD500] px-6 py-4"
+        className="md:hidden fixed top-0 left-0 right-0 z-50 bg-primary px-6 py-4"
       >
-        <div className="text-[#00296B] font-bold text-xl text-center">
+        <div className="text-secondary-dark font-bold text-xl text-center">
           MEJIWA
         </div>
       </motion.div>
@@ -144,18 +150,23 @@ export default function Navbar() {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#FFD500] shadow-2xl"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-primary shadow-2xl"
       >
         <div className="flex items-center justify-around px-4 py-3">
-
           {/* beranda */}
           <Link href="/Home">
             <motion.div
               whileTap={{ scale: 0.9 }}
               className="flex flex-col items-center gap-1 px-4 py-2"
             >
-              <Home size={24} className="text-[#00296B]" strokeWidth={2.5} />
-              <span className="text-xs font-semibold text-[#00296B]">Beranda</span>
+              <Home
+                size={24}
+                className="text-secondary-dark"
+                strokeWidth={2.5}
+              />
+              <span className="text-xs font-semibold text-secondary-dark">
+                Beranda
+              </span>
             </motion.div>
           </Link>
 
@@ -166,8 +177,14 @@ export default function Navbar() {
               onClick={() => setIsMijiOpen(!isMijiOpen)}
               className="flex flex-col items-center gap-1 px-4 py-2"
             >
-              <PawPrint size={24} className="text-[#00296B]" strokeWidth={2.5} />
-              <span className="text-xs font-semibold text-[#00296B]">Miji</span>
+              <PawPrint
+                size={24}
+                className="text-secondary-dark"
+                strokeWidth={2.5}
+              />
+              <span className="text-xs font-semibold text-secondary-dark">
+                Miji
+              </span>
             </motion.button>
 
             {/* Dropdown Menu */}
@@ -183,21 +200,21 @@ export default function Navbar() {
                   <Link
                     href="/CeritaMiji"
                     onClick={() => setIsMijiOpen(false)}
-                    className="block px-5 py-3 text-[#00296B] font-medium hover:bg-[#FFD500] transition-colors text-center"
+                    className="block px-5 py-3 text-secondary-dark font-medium hover:bg-primary transition-colors text-center"
                   >
                     Cerita Miji
                   </Link>
                   <Link
                     href="/SuaraMiji"
                     onClick={() => setIsMijiOpen(false)}
-                    className="block px-5 py-3 text-[#00296B] font-medium hover:bg-[#FFD500] transition-colors text-center"
+                    className="block px-5 py-3 text-secondary-dark font-medium hover:bg-primary transition-colors text-center"
                   >
                     Suara Miji
                   </Link>
                   <Link
                     href="/DeteksiMiji"
                     onClick={() => setIsMijiOpen(false)}
-                    className="block px-5 py-3 text-[#00296B] font-medium hover:bg-[#FFD500] transition-colors text-center"
+                    className="block px-5 py-3 text-secondary-dark font-medium hover:bg-primary transition-colors text-center"
                   >
                     Deteksi Miji
                   </Link>
@@ -212,8 +229,14 @@ export default function Navbar() {
               whileTap={{ scale: 0.9 }}
               className="flex flex-col items-center gap-1 px-4 py-2"
             >
-              <Heart size={24} className="text-[#00296B]" strokeWidth={2.5} />
-              <span className="text-xs font-semibold text-[#00296B]">Sehat Jiwa</span>
+              <Heart
+                size={24}
+                className="text-secondary-dark"
+                strokeWidth={2.5}
+              />
+              <span className="text-xs font-semibold text-secondary-dark">
+                Sehat Jiwa
+              </span>
             </motion.div>
           </Link>
 
@@ -223,23 +246,35 @@ export default function Navbar() {
               whileTap={{ scale: 0.9 }}
               className="flex flex-col items-center gap-1 px-4 py-2"
             >
-              <UserPlus size={24} className="text-[#00296B]" strokeWidth={2.5} />
-              <span className="text-xs font-semibold text-[#00296B]">Daftar</span>
+              <UserPlus
+                size={24}
+                className="text-secondary-dark"
+                strokeWidth={2.5}
+              />
+              <span className="text-xs font-semibold text-secondary-dark">
+                Daftar
+              </span>
             </motion.div>
           </Link>
 
           {/* Login */}
-          <Link href="/Login">
+          <Link href="/login">
             <motion.div
               whileTap={{ scale: 0.9 }}
               className="flex flex-col items-center gap-1 px-4 py-2"
             >
-              <LogIn size={24} className="text-[#00296B]" strokeWidth={2.5} />
-              <span className="text-xs font-semibold text-[#00296B]">Login</span>
+              <LogIn
+                size={24}
+                className="text-secondary-dark"
+                strokeWidth={2.5}
+              />
+              <span className="text-xs font-semibold text-secondary-dark">
+                Login
+              </span>
             </motion.div>
           </Link>
         </div>
       </motion.nav>
     </>
-  )
+  );
 }
