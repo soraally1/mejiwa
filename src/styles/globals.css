@@ -9,6 +9,12 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-plus-jakarta-sans);
+  --color-primary: #ffd500;
+  --color-primary-light: #ffe866;
+  --color-primary-dark: #fdc500;
+  --color-secondary: #003f88;
+  --color-secondary-light: #00509d;
+  --color-secondary-dark: #00296b;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,5 +27,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-plus-jakarta-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-plus-jakarta-sans), system-ui, -apple-system,
+    sans-serif;
 }

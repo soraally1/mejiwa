@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Mijibanner from "../assets/mijiBanner.png";
 
 export default function MejiwaSection() {
   const containerVariants = {
@@ -13,7 +14,7 @@ export default function MejiwaSection() {
         delayChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -25,7 +26,7 @@ export default function MejiwaSection() {
         ease: "easeOut" as const,
       },
     },
-  }
+  };
 
   const imageVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -37,10 +38,13 @@ export default function MejiwaSection() {
         ease: "easeOut" as const,
       },
     },
-  }
+  };
 
   return (
-    <section id="mejiwa" className="relative min-h-screen bg-[#FFD500] flex items-center justify-center py-20 px-6 overflow-hidden">
+    <section
+      id="mejiwa"
+      className="relative min-h-screen bg-primary flex items-center justify-center py-20 px-6 overflow-hidden"
+    >
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -51,27 +55,24 @@ export default function MejiwaSection() {
         {/* Header */}
         <motion.h2
           variants={itemVariants}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#00296B] mb-6"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-dark mb-6"
         >
           Tenangkan Jiwa Kamu!
         </motion.h2>
         <motion.p
           variants={itemVariants}
-          className="text-lg md:text-md lg:text-xl text-[#00296B] mb-12 max-w-3xl mx-auto font-medium"
+          className="text-lg md:text-md lg:text-xl text-secondary-dark mb-12 max-w-3xl mx-auto font-medium"
         >
-          Ajak jiwa kamu bermain dengan minji, bermain di taman bunga penuh dengan kebahagiaan
+          Ajak jiwa kamu bermain dengan Miji, bermain di taman bunga penuh
+          dengan kebahagiaan
         </motion.p>
-        <motion.div
-          variants={imageVariants}
-          className="relative mb-10"
-        >
-          <div className="relative mx-auto max-w-xl bg-white rounded-3xl p-3 shadow-2xl">
-            <div className="relative aspect-[16/7] w-full rounded-2xl overflow-hidden">
+        <motion.div variants={imageVariants} className="relative mb-10">
+          <div className="relative mx-auto max-w-4xl bg-white rounded-[50px] p-3 shadow-2xl">
+            <div className="w-full overflow-hidden">
               <Image
-                src="/Mejibanner.png"
+                src={Mijibanner}
                 alt="Kucing Miji"
-                fill
-                className="object-cover"
+                className="w-full h-auto"
                 priority
               />
             </div>
@@ -85,11 +86,11 @@ export default function MejiwaSection() {
             boxShadow: "0 20px 40px rgba(0, 41, 107, 0.3)",
           }}
           whileTap={{ scale: 0.98 }}
-          className="px-10 py-4 bg-[#00296B] text-white font-bold text-lg rounded-full shadow-lg hover:shadow-2xl transition-all duration-300"
+          className="px-10 py-4 bg-secondary-dark text-white font-bold text-lg rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
         >
           Mulai Sekarang
         </motion.button>
       </motion.div>
     </section>
-  )
+  );
 }
